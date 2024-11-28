@@ -42,6 +42,7 @@ test:
   requires:
     - pip
     - pytest
+    - scipy <1.13  # [osx and x86_64]
 
 about:
   home: https://github.com/jamalsenouci/causalimpact
