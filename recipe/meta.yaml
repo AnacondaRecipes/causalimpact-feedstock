@@ -23,7 +23,7 @@ requirements:
   run:
     - python
     - importlib-metadata
-    - pandas
+    - pandas <2
     - numpy {{ numpy }}
     - statsmodels
     - matplotlib-base
