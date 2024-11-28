@@ -24,7 +24,7 @@ requirements:
     - python
     - importlib-metadata
     - pandas
-    - numpy
+    - numpy {{ numpy }}
     - statsmodels
     - matplotlib-base
     - pytensor
