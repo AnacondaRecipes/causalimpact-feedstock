@@ -40,10 +40,9 @@ test:
     - causalimpact
   commands:
     - pip check
-    # skip win-64 because of pandas-related problems with tests (Int64 vs. Int32 type check)
     - pytest -v tests  # [not win]
     # these appear to be the usual pandas-related problem with Int64 vs. Int32 type check
-    #- pytest -k "not (test_input_w_bad_pre_period or test_input_w_bad_post_period or test_input_w_pre_and_post_periods_having_distinct_classes)" tests  # [win]
+    - pytest -v -k "not (test_input_w_bad_pre_period or test_input_w_bad_post_period or test_input_w_pre_and_post_periods_having_distinct_classes)" tests  # [win]
   requires:
     - pip
     - pytest
