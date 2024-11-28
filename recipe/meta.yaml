@@ -69,3 +69,5 @@ extra:
   recipe-maintainers:
     - jamalsenouci
     - nicornk
+  skip-lints:
+    - compilers_must_be_in_build
