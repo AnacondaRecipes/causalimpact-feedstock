@@ -38,12 +38,19 @@ test:
     - pip
 
 about:
-  home: https://github.com/jamalsenouci/causalimpact/
+  home: https://github.com/jamalsenouci/causalimpact
   summary: Python Package for causal inference using Bayesian structural time-series models
-  dev_url: https://github.com/jamalsenouci/causalimpact/
-  doc_url: https://nbviewer.org/github/jamalsenouci/causalimpact/blob/master/GettingStarted.ipynb
+  description: |
+    This package implements an approach to estimating the causal effect of a designed intervention on a time series.
+    Given a response time series (e.g., clicks) and a set of control time series (e.g., clicks in non-affected markets
+    or clicks on other sites), the package constructs a Bayesian structural time-series model. This model is then used
+    to try and predict the counterfactual, i.e., how the response metric would have evolved after the intervention if
+    the intervention had never occurred
   license: Apache-2.0
   license_file: LICENSE.md
+  license_family: Apache
+  dev_url: https://github.com/jamalsenouci/causalimpact
+  doc_url: https://nbviewer.org/github/jamalsenouci/causalimpact/blob/master/GettingStarted.ipynb
 
 extra:
   recipe-maintainers:
