@@ -17,13 +17,14 @@ requirements:
   host:
     - pip
     - python
+    - setuptools
     - setuptools-scm
     - wheel
   run:
     - python
     - importlib-metadata
     - pandas
-    - numpy >=1.15.0
+    - numpy
     - statsmodels
     - matplotlib-base
     - pytensor
