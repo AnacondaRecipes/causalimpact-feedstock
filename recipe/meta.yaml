@@ -10,18 +10,18 @@ source:
   sha256: bd94dd61edae3b23e43e70bbbfbada06e6d2f7fbac292ed1dbcfcb3afcca929a
 
 build:
-  noarch: python
-  script: {{ PYTHON }} -m pip install . -vv
+  script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
   number: 0
 
 requirements:
   host:
     - pip
-    - python >=3.6
+    - python
     - setuptools-scm
+    - wheel
   run:
+    - python
     - importlib-metadata
-    - python >=3.6
     - pandas
     - numpy >=1.15.0
     - statsmodels
