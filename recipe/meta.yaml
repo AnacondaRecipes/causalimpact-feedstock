@@ -48,7 +48,7 @@ test:
     - pip
     - pytest
     # restrict scipy on osx-64 because of failing imports in tests
-    - scipy <1.13  # [osx and x86_64]
+    #- scipy <1.13  # [osx and x86_64]
 
 about:
   home: https://github.com/jamalsenouci/causalimpact
