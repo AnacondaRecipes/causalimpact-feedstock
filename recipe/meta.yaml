@@ -46,8 +46,11 @@ test:
   requires:
     - pip
     - pytest
-    # restrict scipy on osx-64 because of failing imports in tests
-    #- scipy <1.13  # [osx and x86_64]
+    # restrict scipy and arviz because of failing imports in tests
+    # "ImportError: cannot import name 'gaussian' from 'scipy.signal'"
+    # problem is described here https://discourse.pymc.io/t/importerror-cannot-import-name-gaussian-from-scipy-signal/14170
+    - arviz <1.17
+    - scipy <1.13
 
 about:
   home: https://github.com/jamalsenouci/causalimpact
