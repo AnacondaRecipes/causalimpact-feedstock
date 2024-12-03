@@ -32,7 +32,6 @@ requirements:
     - matplotlib-base
     - pytensor
     - pymc
-    - {{ compiler('cxx') }}
 
 test:
   source_files:
