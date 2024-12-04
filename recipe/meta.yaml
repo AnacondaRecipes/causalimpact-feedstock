@@ -26,7 +26,8 @@ requirements:
     - python
     - importlib-metadata  # [py<38]
     - pandas <2
-    - numpy
+    - numpy {{ numpy }}  # [not (win and py==310)]
+    - numpy >=1.22.3  # [win and py==310]
     - statsmodels
     - matplotlib-base
     - pytensor
