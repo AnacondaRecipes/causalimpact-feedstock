@@ -12,6 +12,10 @@ source:
 build:
   # because of restraint on pandas <2 missing for py312
   skip: True  # [py>311]
+  # skipping py310 build on win because of problematic combination of compatible numpy and statsmodel.
+  # Tests fail under all compatible combination either because of wrong numpy version or statsmodel
+  # not passing pip check
+  skip: True  # [win and py==310]
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
   number: 0
 
