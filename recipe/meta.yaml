@@ -34,7 +34,7 @@ requirements:
     - numpy >=1.22.3  # [win and py==310]
     - statsmodels
     - matplotlib-base
-    - pytensor
+    - pytensor 2.23.0
     - pymc
 
 test:
