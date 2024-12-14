@@ -12,8 +12,6 @@ source:
 build:
   # because of restraint on pandas <2 missing for py312
   skip: True  # [py>311]
-  # because of missing pytensor
-  skip: True  # [py<=310]
   # skipping py310 build on win because of problematic combination of compatible numpy and statsmodel.
   # Tests fail under all compatible combination either because of wrong numpy version or statsmodel
   # not passing pip check
