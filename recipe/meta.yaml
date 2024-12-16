@@ -16,9 +16,6 @@ build:
   # Tests fail under all compatible combination either because of wrong numpy version or statsmodel
   # not passing pip check
   skip: True  # [win and py==310]
-  # skipping py<311 on osx becuase of missing pytensor 2.12.3 for osx
-  # pytensor 2.12.3 is necessary for py39 and py310 support as pytensor 2.23 supports py>311 only from upstream
-  skip: True  # [osx and py<311]
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
   number: 0
 
