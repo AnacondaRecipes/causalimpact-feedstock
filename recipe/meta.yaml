@@ -10,40 +10,66 @@ source:
   sha256: bd94dd61edae3b23e43e70bbbfbada06e6d2f7fbac292ed1dbcfcb3afcca929a
 
 build:
-  noarch: python
-  script: {{ PYTHON }} -m pip install . -vv
+  # because of restraint on pandas <2 missing for py312
+  skip: True  # [py>311]
+  # skipping py310 build on win because of problematic combination of compatible numpy and statsmodel.
+  # Tests fail under all compatible combination either because of wrong numpy version or statsmodel
+  # not passing pip check
+  skip: True  # [win and py==310]
+  script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
   number: 0
 
 requirements:
   host:
     - pip
-    - python >=3.6
+    - python
+    - setuptools
     - setuptools-scm
+    - wheel
   run:
-    - importlib-metadata
-    - python >=3.6
-    - pandas
-    - numpy >=1.15.0
+    - python
+    - importlib-metadata  # [py<38]
+    - pandas <2
+    - numpy {{ numpy }}  # [not (win and py==310)]
+    - numpy >=1.22.3  # [win and py==310]
     - statsmodels
     - matplotlib-base
     - pytensor
     - pymc
 
 test:
+  source_files:
+    - tests
   imports:
     - causalimpact
   commands:
     - pip check
+    - pytest -v tests  # [not win]
+    # these appear to be the usual pandas-related problem with Int64 vs. Int32 type check
+    - pytest -v -k "not (test_input_w_bad_pre_period or test_input_w_bad_post_period or test_input_w_pre_and_post_periods_having_distinct_classes)" tests  # [win]
   requires:
     - pip
+    - pytest
+    # restrict scipy and arviz because of failing imports in tests
+    # "ImportError: cannot import name 'gaussian' from 'scipy.signal'"
+    # problem is described here https://discourse.pymc.io/t/importerror-cannot-import-name-gaussian-from-scipy-signal/14170
+    - arviz <1.17
+    - scipy <1.13
 
 about:
-  home: https://github.com/jamalsenouci/causalimpact/
+  home: https://github.com/jamalsenouci/causalimpact
   summary: Python Package for causal inference using Bayesian structural time-series models
-  dev_url: https://github.com/jamalsenouci/causalimpact/
-  doc_url: https://nbviewer.org/github/jamalsenouci/causalimpact/blob/master/GettingStarted.ipynb
+  description: |
+    This package implements an approach to estimating the causal effect of a designed intervention on a time series.
+    Given a response time series (e.g., clicks) and a set of control time series (e.g., clicks in non-affected markets
+    or clicks on other sites), the package constructs a Bayesian structural time-series model. This model is then used
+    to try and predict the counterfactual, i.e., how the response metric would have evolved after the intervention if
+    the intervention had never occurred
   license: Apache-2.0
   license_file: LICENSE.md
+  license_family: Apache
+  dev_url: https://github.com/jamalsenouci/causalimpact
+  doc_url: https://nbviewer.org/github/jamalsenouci/causalimpact/blob/master/GettingStarted.ipynb
 
 extra:
   recipe-maintainers:
